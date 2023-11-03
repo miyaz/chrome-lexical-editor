@@ -1,0 +1,11 @@
+{
+  "name": "Lexical Editor",
+  "description": "editor",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [],
+  "action": {
+    "default_title": "Lexical Editor",
+    "default_popup": "index.html"
+  }
+}

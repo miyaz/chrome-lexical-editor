@@ -66,8 +66,9 @@ EOS
 patch -u vite.prod.config.js < ../vite.prod.config.js.patch
 
 npm run build-prod
-mv build ../build
-
 #npm run build-dev
-#mv build build-dev
 
+cd ${SCRIPT_DIR}
+rm -rf build
+cp manifest.json lexical-playground/build/
+mv lexical-playground/build/ build

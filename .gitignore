@@ -2,3 +2,4 @@ lexical
 lexical-playground
 build
 *.patch
+.DS_Store
