@@ -6,6 +6,7 @@ cd ${SCRIPT_DIR}
 if [ -d ./lexical/.git ]
 then
   cd lexical
+  git restore .
   git pull
   cd ..
 else
@@ -42,12 +43,18 @@ npm -D i @babel/plugin-transform-flow-strip-types @babel/preset-react @rollup/pl
 #   },
 #   build: {
 #     outDir: 'build',
+#     rollupOptions: {
+#       input: {
+#         main: new URL('./index.html', import.meta.url).pathname,
+#-        split: new URL('./split/index.html', import.meta.url).pathname,
+#       },
+#     },
 #EOS
 #
 #patch -u vite.config.js < ../vite.config.js.patch
 
 cat <<EOS > ../vite.prod.config.js.patch
-@@ -181,7 +181,12 @@ export default defineConfig({
+@@ -181,14 +181,18 @@
      react(),
    ],
    resolve: {
@@ -61,6 +68,13 @@ cat <<EOS > ../vite.prod.config.js.patch
    },
    build: {
      outDir: 'build',
+     rollupOptions: {
+       input: {
+         main: new URL('./index.html', import.meta.url).pathname,
+-        split: new URL('./split/index.html', import.meta.url).pathname,
+       },
+     },
+     commonjsOptions: {include: []},
 EOS
 
 patch -u vite.prod.config.js < ../vite.prod.config.js.patch
