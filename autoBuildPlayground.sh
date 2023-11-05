@@ -123,25 +123,16 @@ cat <<EOS > ../Editor.tsx.patch
 +      },
 +      COMMAND_PRIORITY_EDITOR
 +    );
-+  }, []);
 +
-+  useEffect(() => {
-+    editor.registerCommand(
-+      FOCUS_COMMAND,
-+      (payload) => {
-+        console.log(payload);
-+        chrome.storage.local.get(['saveData'], (res) => {
-+          console.log(res)
-+          //const json = JSON.parse(res);
-+          const editorState = editor.parseEditorState(
-+            JSON.stringify(res.saveData.editorState),
-+          );
-+          editor.setEditorState(editorState);
-+          editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined);
-+        });
-+      },
-+      COMMAND_PRIORITY_EDITOR
-+    );
++    chrome.storage.local.get(['saveData'], (res) => {
++      console.log(res)
++      //const json = JSON.parse(res);
++      const editorState = editor.parseEditorState(
++        JSON.stringify(res.saveData.editorState),
++      );
++      editor.setEditorState(editorState);
++      editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined);
++    });
 +  }, []);
 +
 +  return null;
