@@ -79,6 +79,91 @@ EOS
 
 patch -u vite.prod.config.js < ../vite.prod.config.js.patch
 
+cat <<EOS > ../Editor.tsx.patch
+@@ -74,6 +74,71 @@
+ import ContentEditable from './ui/ContentEditable';
+ import Placeholder from './ui/Placeholder';
+ 
++import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
++import { BLUR_COMMAND, FOCUS_COMMAND, CLEAR_HISTORY_COMMAND, COMMAND_PRIORITY_EDITOR } from "lexical";
++import {exportFile} from '@lexical/file';
++import {version} from '../package.json';
++import type {EditorState} from 'lexical';
++
++type DocumentJSON = {
++  editorState: EditorState;
++  lastSaved: number;
++  version: typeof version;
++};
++
++const EditorFocusBlurPlugin = () => {
++  const [editor] = useLexicalComposerContext();
++  useEffect(() => {
++    editor.registerCommand(
++      BLUR_COMMAND,
++      (payload) => {
++        console.log(payload);
++        const now = new Date();
++        const editorState = editor.getEditorState();
++        const documentJSON: DocumentJSON = {
++          editorState: editorState.toJSON(),
++          lastSaved: now.getTime(),
++          version,
++        };
++        chrome.storage.local.set({ 
++          saveData: documentJSON,
++        })
++        .then(() => {
++          console.log("Value is set");
++        })
++        .catch((e) => {
++          console.log(e);
++        });
++      },
++      COMMAND_PRIORITY_EDITOR
++    );
++  }, []);
++
++  useEffect(() => {
++    editor.registerCommand(
++      FOCUS_COMMAND,
++      (payload) => {
++        console.log(payload);
++        chrome.storage.local.get(['saveData'], (res) => {
++          console.log(res)
++          //const json = JSON.parse(res);
++          const editorState = editor.parseEditorState(
++            JSON.stringify(res.saveData.editorState),
++          );
++          editor.setEditorState(editorState);
++          editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined);
++        })
++        .catch((e) => {
++          console.log(e);
++        });
++      },
++      COMMAND_PRIORITY_EDITOR
++    );
++  }, []);
++
++  return null;
++};
++
+ const skipCollaborationInit =
+   // @ts-ignore
+   window.parent != null && window.parent.frames.right === window;
+@@ -154,6 +219,7 @@
+         <ComponentPickerPlugin />
+         <EmojiPickerPlugin />
+         <AutoEmbedPlugin />
++        <EditorFocusBlurPlugin />
+ 
+         <MentionsPlugin />
+         <EmojisPlugin />
+EOS
+
+patch -u src/Editor.tsx < ../Editor.tsx.patch
+
 npm run build-prod
 #npm run build-dev
 
