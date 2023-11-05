@@ -81,7 +81,7 @@ EOS
 patch -u vite.prod.config.js < ../vite.prod.config.js.patch
 
 cat <<EOS > ../Editor.tsx.patch
-@@ -74,6 +74,68 @@
+@@ -74,6 +74,59 @@
  import ContentEditable from './ui/ContentEditable';
  import Placeholder from './ui/Placeholder';
 
@@ -141,7 +141,7 @@ cat <<EOS > ../Editor.tsx.patch
  const skipCollaborationInit =
    // @ts-ignore
    window.parent != null && window.parent.frames.right === window;
-@@ -154,6 +216,7 @@
+@@ -154,6 +207,7 @@
          <ComponentPickerPlugin />
          <EmojiPickerPlugin />
          <AutoEmbedPlugin />
