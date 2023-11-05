@@ -81,10 +81,10 @@ EOS
 patch -u vite.prod.config.js < ../vite.prod.config.js.patch
 
 cat <<EOS > ../Editor.tsx.patch
-@@ -74,6 +74,71 @@
+@@ -74,6 +74,68 @@
  import ContentEditable from './ui/ContentEditable';
  import Placeholder from './ui/Placeholder';
- 
+
 +import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 +import { BLUR_COMMAND, FOCUS_COMMAND, CLEAR_HISTORY_COMMAND, COMMAND_PRIORITY_EDITOR } from "lexical";
 +import {exportFile} from '@lexical/file';
@@ -111,7 +111,7 @@ cat <<EOS > ../Editor.tsx.patch
 +          lastSaved: now.getTime(),
 +          version,
 +        };
-+        chrome.storage.local.set({ 
++        chrome.storage.local.set({
 +          saveData: documentJSON,
 +        })
 +        .then(() => {
@@ -130,8 +130,7 @@ cat <<EOS > ../Editor.tsx.patch
 +      FOCUS_COMMAND,
 +      (payload) => {
 +        console.log(payload);
-+        chrome.storage.local.get(['saveData'])
-+        .then((res) => {
++        chrome.storage.local.get(['saveData'], (res) => {
 +          console.log(res)
 +          //const json = JSON.parse(res);
 +          const editorState = editor.parseEditorState(
@@ -139,9 +138,6 @@ cat <<EOS > ../Editor.tsx.patch
 +          );
 +          editor.setEditorState(editorState);
 +          editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined);
-+        })
-+        .catch((e) => {
-+          console.log(e);
 +        });
 +      },
 +      COMMAND_PRIORITY_EDITOR
@@ -154,12 +150,12 @@ cat <<EOS > ../Editor.tsx.patch
  const skipCollaborationInit =
    // @ts-ignore
    window.parent != null && window.parent.frames.right === window;
-@@ -154,6 +219,7 @@
+@@ -154,6 +216,7 @@
          <ComponentPickerPlugin />
          <EmojiPickerPlugin />
          <AutoEmbedPlugin />
 +        <EditorFocusBlurPlugin />
- 
+
          <MentionsPlugin />
          <EmojisPlugin />
 EOS
