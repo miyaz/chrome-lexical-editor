@@ -12,6 +12,7 @@ then
 else
   git clone https://github.com/facebook/lexical.git
 fi
+rm -rf lexical-playground
 cp -rf lexical/packages/lexical-playground .
 cp -rf lexical/packages/shared lexical-playground/shared/
 #cp -rf lexical/scripts lexical-playground/
