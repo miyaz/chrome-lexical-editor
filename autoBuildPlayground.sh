@@ -17,7 +17,7 @@ cp -rf lexical/packages/shared lexical-playground/shared/
 #cp -rf lexical/scripts lexical-playground/
 cd lexical-playground
 npm i
-npm -D i @babel/plugin-transform-flow-strip-types @babel/preset-react @rollup/plugin-babel
+npm -D i @babel/plugin-transform-flow-strip-types @babel/preset-react @rollup/plugin-babel @types/chrome
 
 #cat <<EOS > ../vite.config.js.patch
 #@@ -187,7 +187,7 @@ export default defineConfig({
@@ -129,7 +129,8 @@ cat <<EOS > ../Editor.tsx.patch
 +      FOCUS_COMMAND,
 +      (payload) => {
 +        console.log(payload);
-+        chrome.storage.local.get(['saveData'], (res) => {
++        chrome.storage.local.get(['saveData'])
++        .then((res) => {
 +          console.log(res)
 +          //const json = JSON.parse(res);
 +          const editorState = editor.parseEditorState(
