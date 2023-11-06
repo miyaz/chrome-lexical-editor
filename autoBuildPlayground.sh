@@ -82,6 +82,7 @@ patch -u vite.prod.config.js < ../vite.prod.config.js.patch
 
 cp -f ../src/Editor.tsx src/
 cp -f ../src/App.tsx src/
+cp -f ../src/index.css src/
 
 npm run build-prod
 #npm run build-dev
