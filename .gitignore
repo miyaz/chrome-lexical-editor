@@ -3,5 +3,6 @@ lexical
 node_modules
 __tests__
 build
+dist
 *.patch
 .DS_Store
