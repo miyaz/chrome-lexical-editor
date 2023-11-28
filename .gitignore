@@ -1,5 +1,7 @@
 lexical
-lexical-playground
+#lexical-playground
+node_modules
+__tests__
 build
 *.patch
 .DS_Store
