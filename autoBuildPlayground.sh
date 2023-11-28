@@ -12,11 +12,11 @@ then
 else
   git clone https://github.com/facebook/lexical.git
 fi
-rm -rf lexical-playground
-cp -rf lexical/packages/lexical-playground .
-cp -rf lexical/packages/shared lexical-playground/shared/
-#cp -rf lexical/scripts lexical-playground/
-cd lexical-playground
+rm -rf lexical-playground-tmp
+cp -rf lexical/packages/lexical-playground lexical-playground-tmp
+cp -rf lexical/packages/shared lexical-playground-tmp/shared/
+#cp -rf lexical/scripts lexical-playground-tmp/
+cd lexical-playground-tmp
 npm i
 npm -D i @babel/plugin-transform-flow-strip-types @babel/preset-react @rollup/plugin-babel @types/chrome
 
@@ -88,6 +88,6 @@ npm run build-prod
 #npm run build-dev
 
 cd ${SCRIPT_DIR}
-rm -rf build
-cp manifest.json lexical-playground/build/
-mv lexical-playground/build/ build
+rm -rf dist
+cp manifest.json lexical-playground-tmp/build/
+mv lexical-playground-tmp/build/ dist
