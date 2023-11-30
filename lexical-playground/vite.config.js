@@ -11,7 +11,6 @@ import react from '@vitejs/plugin-react';
 import {resolve} from 'path';
 import path from 'path';
 import fs from 'fs';
-import {replaceCodePlugin} from 'vite-plugin-replace';
 import babel from '@rollup/plugin-babel';
 
 const moduleResolution = [
@@ -173,14 +172,6 @@ export default defineConfig({
     "process.env.IS_PREACT": process.env.IS_PREACT,
   },
   plugins: [
-    replaceCodePlugin({
-      replacements: [
-        {
-          from: /__DEV__/g,
-          to: 'true',
-        },
-      ],
-    }),
     babel({
       babelHelpers: 'bundled',
       babelrc: false,
