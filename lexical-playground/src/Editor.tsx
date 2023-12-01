@@ -39,7 +39,6 @@ import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import CollapsiblePlugin from './plugins/CollapsiblePlugin';
 import CommentPlugin from './plugins/CommentPlugin';
 import ComponentPickerPlugin from './plugins/ComponentPickerPlugin';
-import ContextMenuPlugin from './plugins/ContextMenuPlugin';
 import DragDropPaste from './plugins/DragDropPastePlugin';
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin';
 import EmojiPickerPlugin from './plugins/EmojiPickerPlugin';
@@ -142,7 +141,6 @@ export default function Editor(): JSX.Element {
       isRichText,
       showTreeView,
       showTableOfContents,
-      shouldUseLexicalContextMenu,
       tableCellMerge,
       tableCellBackgroundColor,
     },
@@ -315,7 +313,6 @@ export default function Editor(): JSX.Element {
         )}
         {isAutocomplete && <AutocompletePlugin />}
         <div>{showTableOfContents && <TableOfContentsPlugin />}</div>
-        {shouldUseLexicalContextMenu && <ContextMenuPlugin />}
         <ActionsPlugin isRichText={isRichText} />
       </div>
       {/*showTreeView && <TreeViewPlugin />*/}

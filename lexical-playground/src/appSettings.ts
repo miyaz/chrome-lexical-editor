@@ -21,7 +21,6 @@ export const DEFAULT_SETTINGS = {
   isMaxLength: false,
   isRichText: true,
   measureTypingPerf: false,
-  shouldUseLexicalContextMenu: false,
   showNestedEditorTreeView: false,
   showTableOfContents: false,
   showTreeView: true,

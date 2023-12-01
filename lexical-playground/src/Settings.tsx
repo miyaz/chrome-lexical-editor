@@ -29,7 +29,6 @@ export default function Settings(): JSX.Element {
       showNestedEditorTreeView,
       disableBeforeInput,
       showTableOfContents,
-      shouldUseLexicalContextMenu,
     },
   } = useSettings();
   const [showSettings, setShowSettings] = useState(false);
@@ -132,16 +131,6 @@ export default function Settings(): JSX.Element {
             }}
             checked={showTableOfContents}
             text="Table Of Contents"
-          />
-          <Switch
-            onClick={() => {
-              setOption(
-                'shouldUseLexicalContextMenu',
-                !shouldUseLexicalContextMenu,
-              );
-            }}
-            checked={shouldUseLexicalContextMenu}
-            text="Use Lexical Context Menu"
           />
         </div>
       ) : null}
