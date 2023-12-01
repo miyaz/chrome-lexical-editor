@@ -7,14 +7,13 @@
  */
 
 import * as React from 'react';
-import {useMemo, useState} from 'react';
+import {useState} from 'react';
 
 import {isDevPlayground} from './appSettings';
 import {useSettings} from './context/SettingsContext';
 import Switch from './ui/Switch';
 
 export default function Settings(): JSX.Element {
-  const windowLocation = window.location;
   const {
     setOption,
     settings: {
@@ -26,13 +25,6 @@ export default function Settings(): JSX.Element {
     },
   } = useSettings();
   const [showSettings, setShowSettings] = useState(false);
-  const [isSplitScreen, search] = useMemo(() => {
-    const parentWindow = window.parent;
-    const _search = windowLocation.search;
-    const _isSplitScreen =
-      parentWindow && parentWindow.location.pathname === '/split/';
-    return [_isSplitScreen, _search];
-  }, [windowLocation]);
 
   return (
     <>
@@ -51,19 +43,6 @@ export default function Settings(): JSX.Element {
               }}
               checked={isCollab}
               text="Collaboration"
-            />
-          )}
-          {isDevPlayground && (
-            <Switch
-              onClick={() => {
-                if (isSplitScreen) {
-                  window.parent.location.href = `/${search}`;
-                } else {
-                  window.location.href = `/split/${search}`;
-                }
-              }}
-              checked={isSplitScreen}
-              text="Split Screen"
             />
           )}
           <Switch
