@@ -22,7 +22,6 @@ export const DEFAULT_SETTINGS = {
   isRichText: true,
   measureTypingPerf: false,
   showNestedEditorTreeView: false,
-  showTableOfContents: false,
   showTreeView: true,
   tableCellBackgroundColor: true,
   tableCellMerge: true,
