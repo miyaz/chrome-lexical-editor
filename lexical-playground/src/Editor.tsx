@@ -7,7 +7,6 @@
  */
 
 import {AutoFocusPlugin} from '@lexical/react/LexicalAutoFocusPlugin';
-import {CharacterLimitPlugin} from '@lexical/react/LexicalCharacterLimitPlugin';
 import {CheckListPlugin} from '@lexical/react/LexicalCheckListPlugin';
 import {ClearEditorPlugin} from '@lexical/react/LexicalClearEditorPlugin';
 import LexicalClickableLinkPlugin from '@lexical/react/LexicalClickableLinkPlugin';
@@ -55,7 +54,6 @@ import {LayoutPlugin} from './plugins/LayoutPlugin/LayoutPlugin';
 import LinkPlugin from './plugins/LinkPlugin';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin';
 import MarkdownShortcutPlugin from './plugins/MarkdownShortcutPlugin';
-import {MaxLengthPlugin} from './plugins/MaxLengthPlugin';
 import MentionsPlugin from './plugins/MentionsPlugin';
 import PageBreakPlugin from './plugins/PageBreakPlugin';
 import PollPlugin from './plugins/PollPlugin';
@@ -134,9 +132,6 @@ export default function Editor(): JSX.Element {
     settings: {
       isCollab,
       isAutocomplete,
-      isMaxLength,
-      isCharLimit,
-      isCharLimitUtf8,
       isRichText,
       showTreeView,
       tableCellMerge,
@@ -192,7 +187,6 @@ export default function Editor(): JSX.Element {
     <>
       {isRichText && <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />}
       <div className={`editor-container ${!isRichText ? 'plain-text' : ''}`}>
-        {isMaxLength && <MaxLengthPlugin maxLength={30} />}
         <DragDropPaste />
         <AutoFocusPlugin />
         <ClearEditorPlugin />
@@ -302,12 +296,6 @@ export default function Editor(): JSX.Element {
             />
             <HistoryPlugin externalHistoryState={historyState} />
           </>
-        )}
-        {(isCharLimit || isCharLimitUtf8) && (
-          <CharacterLimitPlugin
-            charset={isCharLimit ? 'UTF-16' : 'UTF-8'}
-            maxLength={5}
-          />
         )}
         {isAutocomplete && <AutocompletePlugin />}
         <ActionsPlugin isRichText={isRichText} />

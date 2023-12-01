@@ -21,13 +21,9 @@ export default function Settings(): JSX.Element {
       measureTypingPerf,
       isCollab,
       isRichText,
-      isMaxLength,
-      isCharLimit,
-      isCharLimitUtf8,
       isAutocomplete,
       showTreeView,
       showNestedEditorTreeView,
-      disableBeforeInput,
     },
   } = useSettings();
   const [showSettings, setShowSettings] = useState(false);
@@ -97,32 +93,9 @@ export default function Settings(): JSX.Element {
             text="Rich Text"
           />
           <Switch
-            onClick={() => setOption('isCharLimit', !isCharLimit)}
-            checked={isCharLimit}
-            text="Char Limit"
-          />
-          <Switch
-            onClick={() => setOption('isCharLimitUtf8', !isCharLimitUtf8)}
-            checked={isCharLimitUtf8}
-            text="Char Limit (UTF-8)"
-          />
-          <Switch
-            onClick={() => setOption('isMaxLength', !isMaxLength)}
-            checked={isMaxLength}
-            text="Max Length"
-          />
-          <Switch
             onClick={() => setOption('isAutocomplete', !isAutocomplete)}
             checked={isAutocomplete}
             text="Autocomplete"
-          />
-          <Switch
-            onClick={() => {
-              setOption('disableBeforeInput', !disableBeforeInput);
-              setTimeout(() => window.location.reload(), 500);
-            }}
-            checked={disableBeforeInput}
-            text="Legacy Events"
           />
         </div>
       ) : null}
