@@ -16,7 +16,6 @@ export const DEFAULT_SETTINGS = {
   isAutocomplete: false,
   isCollab: false,
   isRichText: true,
-  measureTypingPerf: false,
   showNestedEditorTreeView: false,
   showTreeView: true,
   tableCellBackgroundColor: true,

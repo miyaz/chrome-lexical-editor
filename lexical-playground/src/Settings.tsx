@@ -18,7 +18,6 @@ export default function Settings(): JSX.Element {
   const {
     setOption,
     settings: {
-      measureTypingPerf,
       isCollab,
       isRichText,
       isAutocomplete,
@@ -67,11 +66,6 @@ export default function Settings(): JSX.Element {
               text="Split Screen"
             />
           )}
-          <Switch
-            onClick={() => setOption('measureTypingPerf', !measureTypingPerf)}
-            checked={measureTypingPerf}
-            text="Measure Perf"
-          />
           <Switch
             onClick={() => setOption('showTreeView', !showTreeView)}
             checked={showTreeView}
