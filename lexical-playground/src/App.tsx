@@ -22,7 +22,6 @@ import PlaygroundNodes from './nodes/PlaygroundNodes';
 import DocsPlugin from './plugins/DocsPlugin';
 import PasteLogPlugin from './plugins/PasteLogPlugin';
 import {TableContext} from './plugins/TablePlugin';
-import TestRecorderPlugin from './plugins/TestRecorderPlugin';
 import Settings from './Settings';
 import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
 
@@ -140,7 +139,6 @@ function App(): JSX.Element {
             <Settings />
             {isDevPlayground ? <DocsPlugin /> : null}
             {isDevPlayground ? <PasteLogPlugin /> : null}
-            {isDevPlayground ? <TestRecorderPlugin /> : null}
           </SharedAutocompleteContext>
         </TableContext>
       </SharedHistoryContext>
