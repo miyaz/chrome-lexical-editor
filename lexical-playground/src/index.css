@@ -164,18 +164,8 @@ pre::-webkit-scrollbar-thumb {
   bottom: 20px;
 }
 
-#docs-button {
-  position: fixed;
-  left: 70px;
-  bottom: 20px;
-}
-
 #options-button::after {
   background-image: url(images/icons/gear.svg);
-}
-
-#docs-button::after {
-  background-image: url(images/icons/file-earmark-text.svg);
 }
 
 .typeahead-popover {
