@@ -20,7 +20,6 @@ import {SharedHistoryContext} from './context/SharedHistoryContext';
 import Editor from './Editor';
 import PlaygroundNodes from './nodes/PlaygroundNodes';
 import DocsPlugin from './plugins/DocsPlugin';
-import PasteLogPlugin from './plugins/PasteLogPlugin';
 import {TableContext} from './plugins/TablePlugin';
 import Settings from './Settings';
 import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
@@ -138,7 +137,6 @@ function App(): JSX.Element {
             </div>
             <Settings />
             {isDevPlayground ? <DocsPlugin /> : null}
-            {isDevPlayground ? <PasteLogPlugin /> : null}
           </SharedAutocompleteContext>
         </TableContext>
       </SharedHistoryContext>

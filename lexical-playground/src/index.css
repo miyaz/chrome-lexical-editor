@@ -164,24 +164,14 @@ pre::-webkit-scrollbar-thumb {
   bottom: 20px;
 }
 
-#paste-log-button {
+#docs-button {
   position: fixed;
   left: 70px;
   bottom: 20px;
 }
 
-#docs-button {
-  position: fixed;
-  left: 120px;
-  bottom: 20px;
-}
-
 #options-button::after {
   background-image: url(images/icons/gear.svg);
-}
-
-#paste-log-button::after {
-  background-image: url(images/icons/clipboard.svg);
 }
 
 #docs-button::after {
