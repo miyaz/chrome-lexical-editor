@@ -340,10 +340,6 @@ i.horizontal-rule {
   background-image: url(images/icons/font-color.svg);
 }
 
-.icon.font-family {
-  background-image: url(images/icons/font-family.svg);
-}
-
 .icon.bg-color {
   background-image: url(images/icons/bg-color.svg);
 }
@@ -390,36 +386,8 @@ i.youtube {
   background-image: url(images/icons/youtube.svg);
 }
 
-.icon.left-align,
-i.left-align {
-  background-image: url(images/icons/text-left.svg);
-}
-
-.icon.center-align,
-i.center-align {
-  background-image: url(images/icons/text-center.svg);
-}
-
-.icon.right-align,
-i.right-align {
-  background-image: url(images/icons/text-right.svg);
-}
-
-.icon.justify-align,
-i.justify-align {
-  background-image: url(images/icons/justify.svg);
-}
-
-i.indent {
-  background-image: url(images/icons/indent.svg);
-}
-
 i.markdown {
   background-image: url(images/icons/markdown.svg);
-}
-
-i.outdent {
-  background-image: url(images/icons/outdent.svg);
 }
 
 i.undo {
@@ -1141,14 +1109,6 @@ i.page-break,
   vertical-align: -0.25em;
 }
 
-.actions i.indent {
-  background-image: url(images/icons/indent.svg);
-}
-
-.actions i.outdent {
-  background-image: url(images/icons/outdent.svg);
-}
-
 .actions i.lock {
   background-image: url(images/icons/lock-fill.svg);
 }
@@ -1163,22 +1123,6 @@ i.page-break,
 
 .actions i.unlock {
   background-image: url(images/icons/lock.svg);
-}
-
-.actions i.left-align {
-  background-image: url(images/icons/text-left.svg);
-}
-
-.actions i.center-align {
-  background-image: url(images/icons/text-center.svg);
-}
-
-.actions i.right-align {
-  background-image: url(images/icons/text-right.svg);
-}
-
-.actions i.justify-align {
-  background-image: url(images/icons/justify.svg);
 }
 
 .actions i.disconnect {
