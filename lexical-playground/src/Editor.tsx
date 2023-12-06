@@ -53,7 +53,6 @@ import LinkPlugin from './plugins/LinkPlugin';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin';
 import MentionsPlugin from './plugins/MentionsPlugin';
 import PageBreakPlugin from './plugins/PageBreakPlugin';
-import PollPlugin from './plugins/PollPlugin';
 import SpeechToTextPlugin from './plugins/SpeechToTextPlugin';
 import TabFocusPlugin from './plugins/TabFocusPlugin';
 import TableCellActionMenuPlugin from './plugins/TableActionMenuPlugin';
@@ -248,7 +247,6 @@ export default function Editor(): JSX.Element {
             <ImagesPlugin />
             <InlineImagePlugin />
             <LinkPlugin />
-            <PollPlugin />
             <TwitterPlugin />
             <YouTubePlugin />
             <FigmaPlugin />

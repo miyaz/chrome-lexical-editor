@@ -43,7 +43,6 @@ import {INSERT_EXCALIDRAW_COMMAND} from '../ExcalidrawPlugin';
 import {INSERT_IMAGE_COMMAND, InsertImageDialog} from '../ImagesPlugin';
 import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog';
 import {INSERT_PAGE_BREAK} from '../PageBreakPlugin';
-import {InsertPollDialog} from '../PollPlugin';
 import {InsertNewTableDialog, InsertTableDialog} from '../TablePlugin';
 
 class ComponentPickerOption extends MenuOption {
@@ -251,14 +250,6 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
       keywords: ['excalidraw', 'diagram', 'drawing'],
       onSelect: () =>
         editor.dispatchCommand(INSERT_EXCALIDRAW_COMMAND, undefined),
-    }),
-    new ComponentPickerOption('Poll', {
-      icon: <i className="icon poll" />,
-      keywords: ['poll', 'vote'],
-      onSelect: () =>
-        showModal('Insert Poll', (onClose) => (
-          <InsertPollDialog activeEditor={editor} onClose={onClose} />
-        )),
     }),
     ...EmbedConfigs.map(
       (embedConfig) =>
