@@ -12,6 +12,7 @@ import {resolve} from 'path';
 import path from 'path';
 import fs from 'fs';
 import babel from '@rollup/plugin-babel';
+import copy from 'rollup-plugin-copy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,6 +30,14 @@ export default defineConfig({
       presets: ['@babel/preset-react'],
     }),
     react(),
+    copy({
+      verbose: true,
+      hook: 'writeBundle',
+      targets: [{
+        src: path.resolve(__dirname, 'node_modules/@excalidraw/excalidraw/dist/excalidraw-assets'),
+        dest: 'build/assets',
+      }]
+    }),
   ],
   resolve: {
     alias: [

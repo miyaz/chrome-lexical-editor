@@ -17,6 +17,9 @@ import {
 } from 'lexical';
 import {useEffect} from 'react';
 
+// use local excalidraw assets (with copied assets by vite)
+(window as any).EXCALIDRAW_ASSET_PATH = 'assets/';
+
 import {
   $createExcalidrawNode,
   ExcalidrawNode,
