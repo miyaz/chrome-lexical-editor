@@ -20,8 +20,6 @@ export default function Settings(): JSX.Element {
       isCollab,
       isRichText,
       isAutocomplete,
-      showTreeView,
-      showNestedEditorTreeView,
     },
   } = useSettings();
   const [showSettings, setShowSettings] = useState(false);
@@ -45,18 +43,6 @@ export default function Settings(): JSX.Element {
               text="Collaboration"
             />
           )}
-          <Switch
-            onClick={() => setOption('showTreeView', !showTreeView)}
-            checked={showTreeView}
-            text="Debug View"
-          />
-          <Switch
-            onClick={() =>
-              setOption('showNestedEditorTreeView', !showNestedEditorTreeView)
-            }
-            checked={showNestedEditorTreeView}
-            text="Nested Editors Debug View"
-          />
           <Switch
             onClick={() => {
               setOption('isRichText', !isRichText);

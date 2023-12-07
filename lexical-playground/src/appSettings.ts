@@ -16,8 +16,6 @@ export const DEFAULT_SETTINGS = {
   isAutocomplete: false,
   isCollab: false,
   isRichText: true,
-  showNestedEditorTreeView: false,
-  showTreeView: true,
   tableCellBackgroundColor: true,
   tableCellMerge: true,
 };

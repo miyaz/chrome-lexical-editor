@@ -128,7 +128,6 @@ export default function Editor(): JSX.Element {
       isCollab,
       isAutocomplete,
       isRichText,
-      showTreeView,
       tableCellMerge,
       tableCellBackgroundColor,
     },
@@ -288,7 +287,6 @@ export default function Editor(): JSX.Element {
         {isAutocomplete && <AutocompletePlugin />}
         <ActionsPlugin isRichText={isRichText} />
       </div>
-      {/*showTreeView && <TreeViewPlugin />*/}
     </>
   );
 }
