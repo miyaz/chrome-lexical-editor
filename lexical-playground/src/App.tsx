@@ -15,7 +15,6 @@ import * as React from 'react';
 
 import {isDevPlayground} from './appSettings';
 import {SettingsContext, useSettings} from './context/SettingsContext';
-import {SharedAutocompleteContext} from './context/SharedAutocompleteContext';
 import {SharedHistoryContext} from './context/SharedHistoryContext';
 import Editor from './Editor';
 import PlaygroundNodes from './nodes/PlaygroundNodes';
@@ -126,12 +125,10 @@ function App(): JSX.Element {
     <LexicalComposer initialConfig={initialConfig}>
       <SharedHistoryContext>
         <TableContext>
-          <SharedAutocompleteContext>
-            <div className="editor-shell">
-              <Editor />
-            </div>
-            <Settings />
-          </SharedAutocompleteContext>
+          <div className="editor-shell">
+            <Editor />
+          </div>
+          <Settings />
         </TableContext>
       </SharedHistoryContext>
     </LexicalComposer>

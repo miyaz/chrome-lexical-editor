@@ -13,7 +13,6 @@ export const isDevPlayground: boolean =
 
 export const DEFAULT_SETTINGS = {
   emptyEditor: isDevPlayground,
-  isAutocomplete: false,
   isRichText: true,
   tableCellBackgroundColor: true,
   tableCellMerge: true,

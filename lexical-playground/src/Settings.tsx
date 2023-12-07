@@ -17,7 +17,6 @@ export default function Settings(): JSX.Element {
     setOption,
     settings: {
       isRichText,
-      isAutocomplete,
     },
   } = useSettings();
   const [showSettings, setShowSettings] = useState(false);
@@ -37,11 +36,6 @@ export default function Settings(): JSX.Element {
             }}
             checked={isRichText}
             text="Rich Text"
-          />
-          <Switch
-            onClick={() => setOption('isAutocomplete', !isAutocomplete)}
-            checked={isAutocomplete}
-            text="Autocomplete"
           />
         </div>
       ) : null}
