@@ -9,7 +9,6 @@
 import * as React from 'react';
 import {useState} from 'react';
 
-import {isDevPlayground} from './appSettings';
 import {useSettings} from './context/SettingsContext';
 import Switch from './ui/Switch';
 
@@ -17,7 +16,6 @@ export default function Settings(): JSX.Element {
   const {
     setOption,
     settings: {
-      isCollab,
       isRichText,
       isAutocomplete,
     },
@@ -33,20 +31,9 @@ export default function Settings(): JSX.Element {
       />
       {showSettings ? (
         <div className="switches">
-          {isRichText && isDevPlayground && (
-            <Switch
-              onClick={() => {
-                setOption('isCollab', !isCollab);
-                window.location.reload();
-              }}
-              checked={isCollab}
-              text="Collaboration"
-            />
-          )}
           <Switch
             onClick={() => {
               setOption('isRichText', !isRichText);
-              setOption('isCollab', false);
             }}
             checked={isRichText}
             text="Rich Text"

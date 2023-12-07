@@ -10,8 +10,6 @@ import type {LexicalEditor, NodeKey} from 'lexical';
 
 import './StickyNode.css';
 
-import {useCollaborationContext} from '@lexical/react/LexicalCollaborationContext';
-import {CollaborationPlugin} from '@lexical/react/LexicalCollaborationPlugin';
 import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
@@ -22,7 +20,6 @@ import * as React from 'react';
 import {useEffect, useRef} from 'react';
 import useLayoutEffect from 'shared/useLayoutEffect';
 
-import {createWebsocketProvider} from '../collaboration';
 import {useSharedHistoryContext} from '../context/SharedHistoryContext';
 import StickyEditorTheme from '../themes/StickyEditorTheme';
 import ContentEditable from '../ui/ContentEditable';
@@ -73,7 +70,6 @@ export default function StickyComponent({
     x: 0,
     y: 0,
   });
-  const {isCollabActive} = useCollaborationContext();
 
   useEffect(() => {
     const position = positioningRef.current;
@@ -238,15 +234,7 @@ export default function StickyComponent({
         <LexicalNestedComposer
           initialEditor={caption}
           initialTheme={StickyEditorTheme}>
-          {isCollabActive ? (
-            <CollaborationPlugin
-              id={caption.getKey()}
-              providerFactory={createWebsocketProvider}
-              shouldBootstrap={true}
-            />
-          ) : (
-            <HistoryPlugin externalHistoryState={historyState} />
-          )}
+          <HistoryPlugin externalHistoryState={historyState} />
           <PlainTextPlugin
             contentEditable={
               <ContentEditable className="StickyNode__contentEditable" />
