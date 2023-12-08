@@ -29,11 +29,7 @@ import {
   SUPPORT_SPEECH_RECOGNITION,
 } from '../SpeechToTextPlugin';
 
-export default function ActionsPlugin({
-  isRichText,
-}: {
-  isRichText: boolean;
-}): JSX.Element {
+export default function ActionsPlugin(): JSX.Element {
   const [editor] = useLexicalComposerContext();
   const [isEditable, setIsEditable] = useState(() => editor.isEditable());
   const [isSpeechToText, setIsSpeechToText] = useState(false);
