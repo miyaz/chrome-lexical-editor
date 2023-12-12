@@ -47,6 +47,7 @@ import KeywordsPlugin from './plugins/KeywordsPlugin';
 import {LayoutPlugin} from './plugins/LayoutPlugin/LayoutPlugin';
 import LinkPlugin from './plugins/LinkPlugin';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin';
+import MarkdownShortcutPlugin from './plugins/MarkdownShortcutPlugin';
 import MentionsPlugin from './plugins/MentionsPlugin';
 import PageBreakPlugin from './plugins/PageBreakPlugin';
 import SpeechToTextPlugin from './plugins/SpeechToTextPlugin';
@@ -191,6 +192,7 @@ export default function Editor(): JSX.Element {
           placeholder={placeholder}
           ErrorBoundary={LexicalErrorBoundary}
         />
+        <MarkdownShortcutPlugin />
         <CodeHighlightPlugin />
         <ListPlugin />
         <CheckListPlugin />
