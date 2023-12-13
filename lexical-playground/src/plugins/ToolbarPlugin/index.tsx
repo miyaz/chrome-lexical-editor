@@ -273,7 +273,7 @@ function BlockFormatDropDown({
       disabled={disabled}
       buttonClassName="toolbar-item block-controls"
       buttonIconClassName={'icon block-type ' + blockType}
-      buttonLabel={blockTypeToBlockName[blockType]}
+      /* buttonLabel={blockTypeToBlockName[blockType]} */
       buttonAriaLabel="Formatting options for text style">
       <DropDownItem
         className={'item ' + dropDownActiveClass(blockType === 'paragraph')}
@@ -817,9 +817,7 @@ export default function ToolbarPlugin({
                 buttonAriaLabel="Open table toolkit"
                 buttonIconClassName="icon table secondary">
                 <DropDownItem
-                  onClick={() => {
-                    /**/
-                  }}
+                  onClick={() => {}}
                   className="item">
                   <span className="text">TODO</span>
                 </DropDownItem>
@@ -830,7 +828,7 @@ export default function ToolbarPlugin({
           <DropDown
             disabled={!isEditable}
             buttonClassName="toolbar-item spaced"
-            buttonLabel="Insert"
+            /* buttonLabel="Insert" */
             buttonAriaLabel="Insert specialized editor node"
             buttonIconClassName="icon plus">
             <DropDownItem
