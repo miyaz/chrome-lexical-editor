@@ -62,7 +62,7 @@ import ContentEditable from './ui/ContentEditable';
 import Placeholder from './ui/Placeholder';
 
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { BLUR_COMMAND, FOCUS_COMMAND, CLEAR_HISTORY_COMMAND, COMMAND_PRIORITY_EDITOR } from "lexical";
+import { BLUR_COMMAND, CLEAR_HISTORY_COMMAND, COMMAND_PRIORITY_EDITOR } from "lexical";
 import {exportFile} from '@lexical/file';
 import {version} from '../package.json';
 import type {EditorState} from 'lexical';
@@ -75,39 +75,50 @@ type DocumentJSON = {
 
 const EditorFocusBlurPlugin = () => {
   const [editor] = useLexicalComposerContext();
+  const {historyState} = useSharedHistoryContext();
+
   useEffect(() => {
+    console.log(`editor.registerCommand BLUR_COMMAND`)
     editor.registerCommand(
       BLUR_COMMAND,
       (payload) => {
-        console.log(payload);
-        const now = new Date();
-        const editorState = editor.getEditorState();
-        const documentJSON: DocumentJSON = {
-          editorState: editorState.toJSON(),
-          lastSaved: now.getTime(),
-          version,
-        };
-        chrome.storage.local.set({
-          saveData: documentJSON,
-        })
-        .then(() => {
-          console.log("Value is set");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+        //console.log(`payload in BLUR_COMMAND event: ${JSON.stringify(payload)}, undoStack: ${JSON.stringify(historyState.undoStack)}`);
+        if (historyState != undefined && historyState.undoStack.length > 0) {
+          const now = new Date();
+          const editorState = editor.getEditorState();
+          const documentJSON: DocumentJSON = {
+            editorState: editorState.toJSON(),
+            lastSaved: now.getTime(),
+            version,
+          };
+
+          chrome.storage.local.set({
+            saveData: documentJSON,
+          })
+          .then(() => {
+            console.log(`Value is set: ${documentJSON}`);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+        }
       },
       COMMAND_PRIORITY_EDITOR
     );
+  }, []);
 
+  useEffect(() => {
     chrome.storage.local.get(['saveData'], (res) => {
-      console.log(res)
+      //console.log(res)
       //const json = JSON.parse(res);
-      const editorState = editor.parseEditorState(
-        JSON.stringify(res.saveData.editorState),
-      );
-      editor.setEditorState(editorState);
-      editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined);
+      if (res.saveData != undefined) {
+        const editorState = editor.parseEditorState(
+          JSON.stringify(res.saveData.editorState),
+        );
+        editor.setEditable(false);
+        editor.setEditorState(editorState);
+        editor.dispatchCommand(CLEAR_HISTORY_COMMAND, undefined);
+      }
     });
   }, []);
 
